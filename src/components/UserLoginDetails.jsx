@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -12,6 +12,8 @@ import {
   Flex,
   Button,
   Text,
+  Checkbox,
+  Link,
 } from '@chakra-ui/react';
 
 const UserLoginDetails = () => {
