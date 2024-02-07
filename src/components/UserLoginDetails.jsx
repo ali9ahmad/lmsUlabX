@@ -24,10 +24,10 @@ const UserLoginDetails = () => {
     <>
       <Box w="800px" mx="auto">
         <Heading as="h1" mb="45px" color="blue.900" fontSize="40px">
-          Вход в платформу
+          Login to Platform
         </Heading>
         <FormControl isRequired color="black" isInvalid={isError}>
-          <FormLabel fontSize="20px">Email или номер телефона</FormLabel>
+          <FormLabel fontSize="20px">Email or phone number</FormLabel>
           <Input
             type="email"
             value={input}
