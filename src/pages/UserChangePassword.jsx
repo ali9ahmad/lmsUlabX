@@ -1,3 +1,9 @@
+import Experiment from '../components/Experiment';
+
 export default function UserChangePassword() {
-  return <div>UserChangePassword</div>;
+  return (
+    <div>
+      <Experiment />
+    </div>
+  );
 }
