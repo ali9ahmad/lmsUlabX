@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { EmailIcon, SearchIcon, UnlockIcon, ViewIcon } from '@chakra-ui/icons';
 import {
   FormControl,
   FormLabel,
@@ -14,6 +15,9 @@ import {
   Text,
   Checkbox,
   Link,
+  InputLeftElement,
+  InputGroup,
+  InputRightElement,
 } from '@chakra-ui/react';
 
 const UserLoginDetails = () => {
@@ -21,45 +25,68 @@ const UserLoginDetails = () => {
 
   const handleEmailInput = (e) => setInput(e.target.value);
 
-  const isError = input === '';
+  const [submitted, setSubmitted] = useState(false);
+
+  const isError = input === '' && submitted === true;
 
   return (
     <>
       <Box w="800px" mx="auto">
         <Heading as="h1" mb="45px" color="blue.900" fontSize="40px">
-          Вход в платформу
+          Login to Platform
         </Heading>
         <FormControl isRequired color="black" isInvalid={isError}>
-          <FormLabel fontSize="20px">Email или номер телефона</FormLabel>
-          <Input
-            type="email"
-            value={input}
-            onChange={handleEmailInput}
-            borderColor="gray.300"
-            w="100%"
-            h="55px"
-            borderRadius="10px"
-            _hover={{ borderColor: 'blue.300' }}
-          />
-          {isError ? <FormErrorMessage>Неверный Email или номер телефона</FormErrorMessage> : null}
+          <FormLabel fontSize="20px">Email or phone number</FormLabel>
+          <InputGroup size="lg">
+            <InputLeftElement
+              pointerEvents="none"
+              children={<EmailIcon color="gray.400" />}
+              size="xl"
+            />
+            <Input
+              type="email"
+              value={input}
+              onChange={handleEmailInput}
+              borderColor="gray.300"
+              w="100%"
+              // h="55px"
+              borderRadius="10px"
+              _hover={{ borderColor: 'blue.300' }}
+            />
+          </InputGroup>
+          {isError ? <FormErrorMessage>Wrong Email or phone number</FormErrorMessage> : null}
         </FormControl>
-        <FormControl isRequired color="black" mt="25px">
-          <FormLabel fontSize="20px">Пароль</FormLabel>
-          <Input
-            type="password"
-            borderColor="gray.300"
-            w="100%"
-            h="55px"
-            _hover={{ borderColor: 'blue.300' }}
-          />
-          {<FormErrorMessage>Неверный пароль</FormErrorMessage>}
+        <FormControl isRequired color="black" mt="25px" isInvalid={isError}>
+          <FormLabel fontSize="20px">Password</FormLabel>
+          <InputGroup size="lg">
+            <InputLeftElement
+              pointerEvents="none"
+              children={<UnlockIcon color="gray.400" />}
+              size="xl"
+            />
+            <Input
+              type="password"
+              borderColor="gray.300"
+              w="100%"
+              // h="55px"
+              _hover={{ borderColor: 'blue.300' }}
+            />
+            <InputRightElement
+              pointerEvents="pointer"
+              children={<ViewIcon color="gray.400" />}
+              size="xl"
+            />
+          </InputGroup>
+          {isError ? (
+            <FormErrorMessage>Wrong Email or phone number or Password</FormErrorMessage>
+          ) : null}
         </FormControl>
 
         <Flex justify="space-between" mt="30px">
           <FormControl display="flex" alignItems="center" color="black">
             <Checkbox name="rememberMe" size="lg" colorScheme="blue" borderColor="gray.300" />
             <FormLabel mb="0" ml="15px">
-              Запомнить меня
+              Remember me
             </FormLabel>
           </FormControl>
           <Link
@@ -70,7 +97,7 @@ const UserLoginDetails = () => {
             textDecoration="underline"
             textDecorationSkipInk="15px"
             _hover={{ color: 'blue.600' }}>
-            Забыли пароль?
+            Forget Password?
           </Link>
         </Flex>
 
@@ -81,7 +108,7 @@ const UserLoginDetails = () => {
           mt="50px"
           w="100%"
           color="white">
-          Войти
+          Login
         </Button>
         <Button
           variant="outline"
@@ -91,12 +118,12 @@ const UserLoginDetails = () => {
           mt="20px"
           w="100%"
           color="blue.500">
-          Зарегистрироваться
+          Register
         </Button>
 
         <Box position="fixed" bottom={6} left={240} width="100%" textAlign="center" py={2}>
           <Text color="gray.500" alignSelf="bottom" fontWeight="semibold">
-            Copyright © URecruit. Все права защищены
+            Copyright © URecruit. All rights are reserved.
           </Text>
         </Box>
       </Box>
