@@ -62,6 +62,7 @@ export default function MyVerHookForm() {
               type="email"
               id="email"
               placeholder="email@example.com"
+              _placeholder={{ color: 'gray.400' }}
               w="100%"
               borderColor="gray.300"
               borderRadius="10px"
