@@ -27,7 +27,12 @@ export default function MyVerHookForm() {
   //   formState: { errors, isSubmitting },
   // } = useForm();
 
-  const form = useForm();
+  const form = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
   const { control, register, handleSubmit, formState } = form;
 
   const { errors, isSubmitting } = formState;
@@ -56,7 +61,7 @@ export default function MyVerHookForm() {
             <Input
               type="email"
               id="email"
-              placeholder="Email Address"
+              placeholder="email@example.com"
               w="100%"
               borderColor="gray.300"
               borderRadius="10px"
