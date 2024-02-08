@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { EmailIcon, UnlockIcon, ViewIcon } from '@chakra-ui/icons';
 import { DevTool } from '@hookform/devtools';
+import { Link as ReactRouterLink } from 'react-router-dom';
 import {
   FormErrorMessage,
   FormLabel,
@@ -16,6 +17,7 @@ import {
   Checkbox,
   Link,
   Text,
+  Link as ChakraLink,
 } from '@chakra-ui/react';
 
 export default function MyVerHookForm() {
@@ -132,17 +134,20 @@ export default function MyVerHookForm() {
           type="submit">
           Login
         </Button>
-        <Button
-          as="a"
-          variant="outline"
-          borderColor="gray.300"
-          h="55px"
-          _hover={{ borderColor: 'blue.300', boxShadow: 'md' }}
-          mt="20px"
-          w="100%"
-          color="blue.500">
-          Register
-        </Button>
+
+        <ChakraLink as={ReactRouterLink} to="/register" textdecorationskipink="none">
+          <Button
+            as="a"
+            variant="outline"
+            borderColor="gray.300"
+            h="55px"
+            _hover={{ borderColor: 'blue.300', boxShadow: 'md' }}
+            mt="20px"
+            w="100%"
+            color="blue.500">
+            Register
+          </Button>
+        </ChakraLink>
       </form>
       <DevTool control={control} />
       <Box position="fixed" bottom={6} left={240} width="100%" textAlign="center" py={2}>
