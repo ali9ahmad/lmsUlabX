@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EmailIcon, SearchIcon, UnlockIcon, ViewIcon } from '@chakra-ui/icons';
+import { EmailIcon, UnlockIcon, ViewIcon } from '@chakra-ui/icons';
 import {
   FormControl,
   FormLabel,
@@ -92,7 +92,7 @@ const UserLoginDetails = () => {
             w="170px"
             fontWeight="semibold"
             textDecoration="underline"
-            textDecorationSkipInk="15px"
+            textdecorationskipink="15px"
             _hover={{ color: 'blue.600' }}>
             Forget Password?
           </Link>
