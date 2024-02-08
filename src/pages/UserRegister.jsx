@@ -1,3 +1,9 @@
+import MyVerHookForm from '../components/MyVerHookForm';
+
 export default function UserRegister() {
-  return <div>UserRegister</div>;
+  return (
+    <div>
+      <MyVerHookForm />
+    </div>
+  );
 }
