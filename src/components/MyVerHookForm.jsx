@@ -32,10 +32,11 @@ export default function MyVerHookForm() {
       email: '',
       password: '',
     },
+    // mode: 'all',
   });
   const { control, register, handleSubmit, formState } = form;
 
-  const { errors, isSubmitting } = formState;
+  const { errors, isSubmitting, isSubmitted, isDirty, isValid } = formState;
 
   const onSubmit = (data) => {
     console.log('form submitted', data);
@@ -92,10 +93,11 @@ export default function MyVerHookForm() {
             <Input
               type="password"
               id="password"
-              placeholder="Password"
               w="100%"
               borderColor="gray.300"
               borderRadius="10px"
+              placeholder="••••••••"
+              _placeholder={{ color: 'gray.400' }}
               _hover={{ borderColor: 'blue.300' }}
               {...register('password', {
                 required: 'This is required',
@@ -130,8 +132,9 @@ export default function MyVerHookForm() {
         </Flex>
 
         <Button
+          disabled={!isDirty || !isValid}
           bg="blue.500"
-          h="55px"
+          size="lg"
           _hover={{ color: 'white.900', boxShadow: 'lg' }}
           mt="50px"
           w="100%"
@@ -146,7 +149,7 @@ export default function MyVerHookForm() {
             as="a"
             variant="outline"
             borderColor="gray.300"
-            h="55px"
+            size="lg"
             _hover={{ borderColor: 'blue.300', boxShadow: 'md' }}
             mt="20px"
             w="100%"
