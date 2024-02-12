@@ -1,6 +1,7 @@
 import { Flex, Box } from '@chakra-ui/react';
 import MainImageLeftSide from '../components/MainImageLeftSide';
-import RegisterFirstStep from '../components/RegisterFirstStep';
+// import RegisterFirstStep from '../components/RegisterFirstStep';
+import RegisterSecondStep from '../components/RegisterFirstStep';
 
 export default function UserRegister() {
   return (
@@ -18,7 +19,7 @@ export default function UserRegister() {
           bg="white"
           borderTopStartRadius="50px"
           borderBottomStartRadius="50px">
-          <RegisterFirstStep />
+          <RegisterSecondStep />
         </Box>
       </Flex>
     </>

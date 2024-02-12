@@ -19,6 +19,7 @@ import {
   Link,
   Text,
   Link as ChakraLink,
+  InputRightElement,
 } from '@chakra-ui/react';
 
 export default function RegisterFirstStep() {
@@ -106,8 +107,8 @@ export default function RegisterFirstStep() {
 
           <Button
             disabled={!isDirty || !isValid}
-            bg="gray.300"
-            color="black"
+            bg="blue.400"
+            color="white"
             _hover={{ boxShadow: 'lg' }}
             mt="35px"
             w="100%"
