@@ -7,7 +7,7 @@ export default function MainImageLeftSide() {
         Learning Management system
       </Heading>
       <Box mt="45px" alignItems="center" mx="auto" align="center">
-        <Image src="../../public/images/mainLeftSideImage.png" alt="MainLeftSideImage" w="900px" />
+        <Image src="../../public/images/mainLeftSideImage.png" alt="MainLeftSideImage" w="600px" />
       </Box>
     </>
   );

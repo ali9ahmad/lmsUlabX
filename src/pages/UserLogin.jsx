@@ -13,7 +13,7 @@ export default function UserLogin() {
 
         <Box
           w="50%"
-          pt="145px"
+          pt="100px"
           alignItems="center"
           justify="center"
           bg="white"
