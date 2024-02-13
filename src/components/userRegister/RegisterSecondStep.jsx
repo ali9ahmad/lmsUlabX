@@ -17,9 +17,36 @@ import {
   Text,
   Link as ChakraLink,
   Checkbox,
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  useSteps,
 } from '@chakra-ui/react';
 
 export default function RegisterSecondStep() {
+  // Const for Progress bar
+
+  const steps = [
+    { title: 'First Step', description: 'Main information' },
+    { title: 'Second Step', description: 'OTP' },
+  ];
+
+  const { activeStep } = useSteps({
+    index: 2,
+    count: steps.length,
+  });
+
+  const max = steps.length - 1;
+  const progressPercent = (activeStep / max) * 100;
+
+  // const for hook form
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -42,23 +69,37 @@ export default function RegisterSecondStep() {
           Registration
         </Heading>
 
+        <Box position="relative">
+          <Stepper size="lg" index={activeStep}>
+            {steps.map((index) => (
+              <Step key={index}>
+                <StepIndicator bg="white" color="black">
+                  <StepStatus complete={<StepIcon />} active={<StepNumber />} />
+                </StepIndicator>
+                <StepSeparator />
+                <StepSeparator />
+              </Step>
+            ))}
+          </Stepper>
+        </Box>
+
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormControl isInvalid={errors.name} isRequired color="black" mt="25px">
-            <FormLabel htmlFor="name" fontSize="20px">
+            <FormLabel htmlFor="number" fontSize="20px">
               Confirmation Code
             </FormLabel>
             <InputGroup>
               <InputLeftElement pointerEvents="none" children={<UnlockIcon color="gray.400" />} />
               <Input
-                type="name"
-                id="name"
+                type="number"
+                id="number"
                 w="100%"
                 borderColor="gray.300"
                 borderRadius="10px"
                 placeholder="Please Enter OTP here"
                 _placeholder={{ color: 'gray.400' }}
                 _hover={{ borderColor: 'blue.300' }}
-                {...register('name', {
+                {...register('number', {
                   required: 'This is required',
                 })}
               />

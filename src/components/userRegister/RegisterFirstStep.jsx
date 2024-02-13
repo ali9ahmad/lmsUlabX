@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { EmailIcon, UnlockIcon, ViewIcon } from '@chakra-ui/icons';
+import { EmailIcon } from '@chakra-ui/icons';
 import { DevTool } from '@hookform/devtools';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import { VscAccount } from 'react-icons/vsc';
@@ -14,14 +14,39 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
-  Flex,
-  Checkbox,
-  Link,
   Text,
   Link as ChakraLink,
+  Step,
+  StepIcon,
+  StepIndicator,
+  StepNumber,
+  StepSeparator,
+  StepStatus,
+  Stepper,
+  useSteps,
+  Progress,
 } from '@chakra-ui/react';
 
 export default function RegisterFirstStep() {
+  // Const for Progress bar
+
+  const steps = [
+    { title: 'First Step', description: 'Main information' },
+    { title: 'Second Step', description: 'OTP' },
+  ];
+
+  const { activeStep } = useSteps({
+    index: 1,
+    count: steps.length,
+  });
+
+  const activeStepText = steps[activeStep].description;
+
+  const max = steps.length - 1;
+  const progressPercent = (activeStep / max) * 100;
+
+  // const for hook form
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -29,6 +54,7 @@ export default function RegisterFirstStep() {
     },
     // mode: 'all',
   });
+
   const { control, register, handleSubmit, formState } = form;
 
   const { errors, isDirty, isValid } = formState;
@@ -37,18 +63,43 @@ export default function RegisterFirstStep() {
     console.log('form submitted', data);
   };
 
+  // ********************************
+
   return (
     <Box w={{ sm: 200, md: 400, lg: 700 }} mx="auto">
       <Box w="60%" mx="auto">
-        <Heading as="h1" mb="45px" color="blue.900" fontSize="40px">
+        <Heading as="h1" mb="25px" color="blue.900" fontSize="40px">
           Registration
         </Heading>
+
+        <Box position="relative">
+          <Stepper size="lg" index={activeStep}>
+            {steps.map((index) => (
+              <Step key={index}>
+                <StepIndicator bg="white" color="black">
+                  <StepStatus complete={<StepIcon />} active={<StepNumber />} />
+                </StepIndicator>
+                <StepSeparator />
+                <StepSeparator />
+              </Step>
+            ))}
+          </Stepper>
+          {/* <Progress
+            value={progressPercent}
+            position="absolute"
+            height="3px"
+            width="full"
+            top="10px"
+            zIndex={-1}
+          /> */}
+        </Box>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormControl isInvalid={errors.name} isRequired color="black" mt="25px">
             <FormLabel htmlFor="name" fontSize="20px">
               Inter Your Full Name
             </FormLabel>
+
             <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
@@ -68,6 +119,7 @@ export default function RegisterFirstStep() {
                 })}
               />
             </InputGroup>
+
             <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
           </FormControl>
 
@@ -75,6 +127,7 @@ export default function RegisterFirstStep() {
             <FormLabel htmlFor="email" fontSize="20px" color="black">
               Enter your Email Address
             </FormLabel>
+
             <InputGroup>
               <InputLeftElement pointerEvents="none" children={<EmailIcon color="gray.400" />} />
               <Input
@@ -95,16 +148,16 @@ export default function RegisterFirstStep() {
                 })}
               />
             </InputGroup>
+
             <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
 
           <ChakraLink
             as={ReactRouterLink}
             to="secondStep"
-            _hover={{ textdecorationskipink: 'none' }}>
+            _hover={{ textdecorationskipink: 'none' }}
+            disabled={!isDirty || !isValid}>
             <Button
-              as="a"
-              disabled={!isDirty || !isValid}
               _hover={{ boxShadow: 'lg' }}
               _active={{ bg: 'gray.100' }}
               mt="30px"
@@ -115,6 +168,18 @@ export default function RegisterFirstStep() {
               Next Step
             </Button>
           </ChakraLink>
+
+          {/* <Button
+            disabled={!isDirty || !isValid}
+            _hover={{ boxShadow: 'lg' }}
+            _active={{ bg: 'gray.100' }}
+            mt="30px"
+            w="100%"
+            type="button"
+            bg="gray.200"
+            color="black">
+            Next Step
+          </Button> */}
         </form>
 
         <DevTool control={control} />

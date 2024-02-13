@@ -148,7 +148,6 @@ export default function MyVerHookForm() {
             to="userRegister"
             _hover={{ textdecorationskipink: 'none' }}>
             <Button
-              as="a"
               variant="outline"
               borderColor="gray.300"
               _hover={{ borderColor: 'gray.400', boxShadow: 'md' }}

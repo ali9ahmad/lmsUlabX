@@ -9,7 +9,7 @@ import RootLayout from './layouts/RootLayout';
 import UserRegisterLayout from './layouts/UserRegisterLayout';
 import RegisterFirstStep from './components/userRegister/RegisterFirstStep';
 import RegisterSecondStep from './components/userRegister/RegisterSecondStep';
-import ForgetPassword from './pages/ForgetPassword';
+import ForgotPassword from './pages/ForgotPassword';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
         <Route index element={<RegisterFirstStep />} />
         <Route path="secondStep" element={<RegisterSecondStep />} />
       </Route>
-      <Route path="forgotPassword" element={<ForgetPassword />} />
+      <Route path="forgotPassword" element={<ForgotPassword />} />
     </Route>,
   ),
 );
