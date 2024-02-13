@@ -29,7 +29,7 @@ import {
   useSteps,
 } from '@chakra-ui/react';
 
-export default function RegisterSecondStep() {
+export default function ForPasswordSecondSt() {
   // Const for Progress bar
 
   const steps = [
@@ -66,22 +66,8 @@ export default function RegisterSecondStep() {
     <Box w={{ sm: 200, md: 400, lg: 700 }} mx="auto">
       <Box w="60%" mx="auto">
         <Heading as="h1" mb="25px" color="blue.900" fontSize="40px">
-          Registration
+          Change Password
         </Heading>
-
-        <Box position="relative">
-          <Stepper size="lg" index={activeStep}>
-            {steps.map((index) => (
-              <Step key={index}>
-                <StepIndicator bg="white" color="black">
-                  <StepStatus complete={<StepIcon />} active={<StepNumber />} />
-                </StepIndicator>
-                <StepSeparator />
-                <StepSeparator />
-              </Step>
-            ))}
-          </Stepper>
-        </Box>
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormControl isInvalid={errors.name} isRequired color="black" mt="25px">
@@ -107,29 +93,28 @@ export default function RegisterSecondStep() {
             <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
           </FormControl>
 
-          <FormControl display="flex" alignItems="center" color="gray.500" mt="25px">
-            <Checkbox
-              name="rememberMe"
-              size="lg"
-              colorScheme="gray"
-              borderColor="gray.300"
-              mb="16px"
-            />
-            <FormLabel mb="0" ml="15px">
-              By pressing the "Register" button, you will agree to all terms and conditions
-            </FormLabel>
-          </FormControl>
+          <Box mt="10px" w="100%" display="flex">
+            <Button color="gray.400" mx="auto">
+              New Confirmation Number
+            </Button>
+          </Box>
 
-          <Button
-            disabled={!isDirty || !isValid}
-            bg="blue.400"
-            color="white"
-            _hover={{ boxShadow: 'lg' }}
-            mt="35px"
-            w="100%"
-            type="submit">
-            Register
-          </Button>
+          <ChakraLink
+            as={ReactRouterLink}
+            to="../createNewPassword"
+            _hover={{ textdecorationskipink: 'none' }}
+            disabled={!isDirty || !isValid}>
+            <Button
+              _hover={{ boxShadow: 'lg' }}
+              _active={{ bg: 'blue.200' }}
+              mt="15px"
+              w="100%"
+              type="button"
+              bg="blue.400"
+              color="white">
+              Next Step
+            </Button>
+          </ChakraLink>
         </form>
 
         <DevTool control={control} />

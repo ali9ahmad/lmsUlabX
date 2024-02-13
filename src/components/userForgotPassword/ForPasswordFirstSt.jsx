@@ -24,9 +24,10 @@ import {
   StepStatus,
   Stepper,
   useSteps,
+  Progress,
 } from '@chakra-ui/react';
 
-export default function RegisterFirstStep() {
+export default function ForPasswordFirstSt() {
   // Const for Progress bar
 
   const steps = [
@@ -38,6 +39,9 @@ export default function RegisterFirstStep() {
     index: 1,
     count: steps.length,
   });
+
+  const max = steps.length - 1;
+  const progressPercent = (activeStep / max) * 100;
 
   // const for hook form
 
@@ -62,60 +66,16 @@ export default function RegisterFirstStep() {
     <Box w={{ sm: 200, md: 400, lg: 700 }} mx="auto">
       <Box w="60%" mx="auto">
         <Heading as="h1" mb="25px" color="blue.900" fontSize="40px">
-          Registration
+          Change Password
         </Heading>
 
-        <Stepper size="lg" index={activeStep}>
-          {steps.map((index) => (
-            <Step key={index}>
-              <StepIndicator bg="white" color="black">
-                <StepStatus
-                  complete={<StepIcon />}
-                  incomplete={<StepNumber />}
-                  active={<StepNumber />}
-                />
-              </StepIndicator>
-              <StepSeparator />
-              <StepSeparator />
-            </Step>
-          ))}
-        </Stepper>
-
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <FormControl isInvalid={errors.name} isRequired color="black" mt="25px">
-            <FormLabel htmlFor="name" fontSize="20px">
-              Enter Your Full Name
-            </FormLabel>
-
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<Icon as={VscAccount} color="gray.400" />}
-              />
-              <Input
-                type="name"
-                id="name"
-                w="100%"
-                borderColor="gray.300"
-                borderRadius="10px"
-                placeholder="First Name (Middle Name) Surname"
-                _placeholder={{ color: 'gray.400' }}
-                _hover={{ borderColor: 'blue.300' }}
-                {...register('name', {
-                  required: 'This is required',
-                })}
-              />
-            </InputGroup>
-
-            <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
-          </FormControl>
-
           <FormControl isInvalid={errors.email} isRequired color="black" mt="20px">
             <FormLabel htmlFor="email" fontSize="20px" color="black">
               Enter your Email Address
             </FormLabel>
 
-            <InputGroup>
+            <InputGroup size="lg" mb="0" alignContent="center" justifyContent="center">
               <InputLeftElement pointerEvents="none" children={<EmailIcon color="gray.400" />} />
               <Input
                 type="email"
@@ -139,26 +99,25 @@ export default function RegisterFirstStep() {
             <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
 
+          <Text color="gray.400" mt="15px" fontSize="15px">
+            Please enter your email address to get confirmation number
+          </Text>
+
           <ChakraLink
             as={ReactRouterLink}
-            to="secondStep"
-            _hover={{ textdecorationskipink: 'none' }}>
-            {isValid ? (
-              <Button
-                _hover={{ boxShadow: 'lg' }}
-                _active={{ bg: 'gray.100' }}
-                mt="30px"
-                w="100%"
-                bg="gray.200"
-                color="black"
-                type="link">
-                Next Step
-              </Button>
-            ) : (
-              <Button isDisabled mt="30px" w="100%" bg="gray.200" color="black" type="link">
-                Next Step
-              </Button>
-            )}
+            to="passwordConfirm"
+            _hover={{ textdecorationskipink: 'none' }}
+            disabled={!isDirty || !isValid}>
+            <Button
+              _hover={{ boxShadow: 'lg' }}
+              _active={{ bg: 'blue.200' }}
+              mt="30px"
+              w="100%"
+              type="button"
+              bg="blue.400"
+              color="white">
+              Get Confirmation Number
+            </Button>
           </ChakraLink>
         </form>
 
