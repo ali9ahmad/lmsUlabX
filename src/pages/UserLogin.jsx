@@ -1,6 +1,5 @@
 import { Flex, Box, Text } from '@chakra-ui/react';
 import MainImageLeftSide from '../components/MainImageLeftSide';
-import UserLoginDetails from '../components/UserLoginDetails';
 import MyVerHookForm from '../components/MyVerHookForm';
 
 export default function UserLogin() {
@@ -13,13 +12,12 @@ export default function UserLogin() {
 
         <Box
           w="50%"
-          pt="100px"
+          pt="145px"
           alignItems="center"
           justify="center"
           bg="white"
           borderTopStartRadius="50px"
           borderBottomStartRadius="50px">
-          {/* <UserLoginDetails /> */}
           <MyVerHookForm />
         </Box>
       </Flex>

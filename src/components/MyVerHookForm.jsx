@@ -116,16 +116,19 @@ export default function MyVerHookForm() {
                 Remember me
               </FormLabel>
             </FormControl>
-            <Link
+
+            <ChakraLink
+              as={ReactRouterLink}
+              to="forgotPassword"
+              textdecorationskipink="none"
               color="blue.500"
               href="#"
               w="190px"
               fontWeight="semibold"
               textDecoration="underline"
-              textdecorationskipink="15px"
               _hover={{ color: 'blue.600' }}>
               Forget Password?
-            </Link>
+            </ChakraLink>
           </Flex>
 
           <Button
@@ -140,12 +143,15 @@ export default function MyVerHookForm() {
             Login
           </Button>
 
-          <ChakraLink as={ReactRouterLink} to="/register" textdecorationskipink="none">
+          <ChakraLink
+            as={ReactRouterLink}
+            to="userRegister"
+            _hover={{ textdecorationskipink: 'none' }}>
             <Button
               as="a"
               variant="outline"
               borderColor="gray.300"
-              _hover={{ borderColor: 'blue.300', boxShadow: 'md' }}
+              _hover={{ borderColor: 'gray.400', boxShadow: 'md' }}
               mt="20px"
               w="100%"
               color="blue.500">

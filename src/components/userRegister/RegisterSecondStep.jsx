@@ -14,20 +14,12 @@ import {
   InputGroup,
   InputLeftElement,
   Icon,
-  Flex,
-  Checkbox,
-  Link,
   Text,
   Link as ChakraLink,
+  Checkbox,
 } from '@chakra-ui/react';
 
-export default function RegisterFirstStep() {
-  // const {
-  //   handleSubmit,
-  //   register,
-  //   formState: { errors, isSubmitting },
-  // } = useForm();
-
+export default function RegisterSecondStep() {
   const form = useForm({
     defaultValues: {
       email: '',
@@ -53,20 +45,17 @@ export default function RegisterFirstStep() {
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormControl isInvalid={errors.name} isRequired color="black" mt="25px">
             <FormLabel htmlFor="name" fontSize="20px">
-              Inter Your Full Name
+              Confirmation Code
             </FormLabel>
             <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<Icon as={VscAccount} color="gray.400" />}
-              />
+              <InputLeftElement pointerEvents="none" children={<UnlockIcon color="gray.400" />} />
               <Input
                 type="name"
                 id="name"
                 w="100%"
                 borderColor="gray.300"
                 borderRadius="10px"
-                placeholder="Name (Middle Name) Surname"
+                placeholder="Please Enter OTP here"
                 _placeholder={{ color: 'gray.400' }}
                 _hover={{ borderColor: 'blue.300' }}
                 {...register('name', {
@@ -77,42 +66,28 @@ export default function RegisterFirstStep() {
             <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
           </FormControl>
 
-          <FormControl isInvalid={errors.email} isRequired color="black" mt="20px">
-            <FormLabel htmlFor="email" fontSize="20px" color="black">
-              Enter your Email Address
+          <FormControl display="flex" alignItems="center" color="gray.500" mt="25px">
+            <Checkbox
+              name="rememberMe"
+              size="lg"
+              colorScheme="gray"
+              borderColor="gray.300"
+              mb="16px"
+            />
+            <FormLabel mb="0" ml="15px">
+              By pressing the "Register" button, you will agree to all terms and conditions
             </FormLabel>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none" children={<EmailIcon color="gray.400" />} />
-              <Input
-                type="email"
-                id="email"
-                placeholder="email@example.com"
-                _placeholder={{ color: 'gray.400' }}
-                w="100%"
-                borderColor="gray.300"
-                borderRadius="10px"
-                _hover={{ borderColor: 'blue.300' }}
-                {...register('email', {
-                  required: 'Email address is required',
-                  pattern: {
-                    value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                    message: 'Invalid email format',
-                  },
-                })}
-              />
-            </InputGroup>
-            <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
 
           <Button
             disabled={!isDirty || !isValid}
-            bg="gray.300"
-            color="black"
+            bg="blue.400"
+            color="white"
             _hover={{ boxShadow: 'lg' }}
             mt="35px"
             w="100%"
             type="submit">
-            Next Step
+            Register
           </Button>
         </form>
 

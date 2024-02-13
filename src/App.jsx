@@ -1,23 +1,25 @@
 import {
   createBrowserRouter,
-  createRoutesFromElements,
   Route,
+  createRoutesFromElements,
   RouterProvider,
 } from 'react-router-dom';
-
-// layouts and pages
-import RootLayout from './layouts/RootLayout';
-import UserRegister from './pages/UserRegister';
 import UserLogin from './pages/UserLogin';
-import UserChangePassword from './pages/UserChangePassword';
+import RootLayout from './layouts/RootLayout';
+import UserRegisterLayout from './layouts/UserRegisterLayout';
+import RegisterFirstStep from './components/userRegister/RegisterFirstStep';
+import RegisterSecondStep from './components/userRegister/RegisterSecondStep';
+import ForgetPassword from './pages/ForgetPassword';
 
-// router and routes
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<UserLogin />} />
-      <Route path="register" element={<UserRegister />} />
-      <Route path="changePassword" element={<UserChangePassword />} />
+      <Route path="userRegister" element={<UserRegisterLayout />}>
+        <Route index element={<RegisterFirstStep />} />
+        <Route path="secondStep" element={<RegisterSecondStep />} />
+      </Route>
+      <Route path="forgotPassword" element={<ForgetPassword />} />
     </Route>,
   ),
 );

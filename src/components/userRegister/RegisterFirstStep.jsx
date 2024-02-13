@@ -19,16 +19,9 @@ import {
   Link,
   Text,
   Link as ChakraLink,
-  InputRightElement,
 } from '@chakra-ui/react';
 
 export default function RegisterFirstStep() {
-  // const {
-  //   handleSubmit,
-  //   register,
-  //   formState: { errors, isSubmitting },
-  // } = useForm();
-
   const form = useForm({
     defaultValues: {
       email: '',
@@ -105,22 +98,29 @@ export default function RegisterFirstStep() {
             <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
 
-          <Button
-            disabled={!isDirty || !isValid}
-            bg="blue.400"
-            color="white"
-            _hover={{ boxShadow: 'lg' }}
-            mt="35px"
-            w="100%"
-            type="submit">
-            Next Step
-          </Button>
+          <ChakraLink
+            as={ReactRouterLink}
+            to="secondStep"
+            _hover={{ textdecorationskipink: 'none' }}>
+            <Button
+              as="a"
+              disabled={!isDirty || !isValid}
+              _hover={{ boxShadow: 'lg' }}
+              _active={{ bg: 'gray.100' }}
+              mt="30px"
+              w="100%"
+              type="button"
+              bg="gray.200"
+              color="black">
+              Next Step
+            </Button>
+          </ChakraLink>
         </form>
 
         <DevTool control={control} />
 
         <Box position="fixed" bottom={6} left={240} width="100%" textAlign="center" py={2}>
-          <Text color="gray.500" alignSelf="bottom" fontWeight="semibold">
+          <Text color="gray.400" alignSelf="bottom" fontWeight="semibold">
             Copyright © URecruit. All rights are reserved.
           </Text>
         </Box>
