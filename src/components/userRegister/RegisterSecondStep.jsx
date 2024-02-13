@@ -28,8 +28,12 @@ import {
   Stepper,
   useSteps,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 
 export default function RegisterSecondStep() {
+  // state for checkbox
+  const [isChecked, setIsChecked] = useState(false);
+
   // Const for Progress bar
 
   const steps = [
@@ -114,22 +118,38 @@ export default function RegisterSecondStep() {
               colorScheme="gray"
               borderColor="gray.300"
               mb="16px"
+              onChange={(e) => setIsChecked(!isChecked)}
             />
             <FormLabel mb="0" ml="15px">
               By pressing the "Register" button, you will agree to all terms and conditions
             </FormLabel>
           </FormControl>
 
-          <Button
-            disabled={!isDirty || !isValid}
-            bg="blue.400"
-            color="white"
-            _hover={{ boxShadow: 'lg' }}
-            mt="35px"
-            w="100%"
-            type="submit">
-            Register
-          </Button>
+          <ChakraLink as={ReactRouterLink} to="#" _hover={{ textdecorationskipink: 'none' }}>
+            {isValid && isChecked ? (
+              <Button
+                _hover={{ boxShadow: 'lg' }}
+                _active={{ bg: 'blue.500' }}
+                mt="30px"
+                w="100%"
+                bg="blue.400"
+                color="white"
+                type="link">
+                Register
+              </Button>
+            ) : (
+              <Button
+                isDisabled
+                mt="30px"
+                w="100%"
+                bg="gray.400"
+                color="black"
+                type="link"
+                _hover={{ bg: 'gray.500' }}>
+                Register
+              </Button>
+            )}
+          </ChakraLink>
         </form>
 
         <DevTool control={control} />

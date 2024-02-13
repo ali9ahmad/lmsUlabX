@@ -28,6 +28,7 @@ import {
   Stepper,
   useSteps,
 } from '@chakra-ui/react';
+import CountdownTimer from '../CountDownTimer';
 
 export default function ForPasswordSecondSt() {
   // Const for Progress bar
@@ -94,11 +95,12 @@ export default function ForPasswordSecondSt() {
           </FormControl>
 
           <Box mt="10px" w="100%" display="flex">
+            {/* <CountdownTimer /> */}
             <Button color="gray.400" mx="auto">
               New Confirmation Number
             </Button>
           </Box>
-
+          {/* 
           <ChakraLink
             as={ReactRouterLink}
             to="../createNewPassword"
@@ -114,13 +116,41 @@ export default function ForPasswordSecondSt() {
               color="white">
               Next Step
             </Button>
+          </ChakraLink> */}
+          <ChakraLink
+            as={ReactRouterLink}
+            to="../createNewPassword"
+            _hover={{ textdecorationskipink: 'none' }}>
+            {isValid ? (
+              <Button
+                _hover={{ boxShadow: 'lg' }}
+                _active={{ bg: 'blue.500' }}
+                mt="10px"
+                w="100%"
+                bg="blue.400"
+                color="white"
+                type="link">
+                Next Step
+              </Button>
+            ) : (
+              <Button
+                isDisabled
+                mt="10px"
+                w="100%"
+                bg="gray.400"
+                color="black"
+                type="link"
+                _hover={{ bg: 'gray.500' }}>
+                Next Step
+              </Button>
+            )}
           </ChakraLink>
         </form>
 
         <DevTool control={control} />
 
         <Box position="fixed" bottom={6} left={240} width="100%" textAlign="center" py={2}>
-          <Text color="gray.500" alignSelf="bottom" fontWeight="semibold">
+          <Text color="gray.400" alignSelf="bottom" fontWeight="semibold">
             Copyright © URecruit. All rights are reserved.
           </Text>
         </Box>

@@ -106,18 +106,30 @@ export default function ForPasswordFirstSt() {
           <ChakraLink
             as={ReactRouterLink}
             to="passwordConfirm"
-            _hover={{ textdecorationskipink: 'none' }}
-            disabled={!isDirty || !isValid}>
-            <Button
-              _hover={{ boxShadow: 'lg' }}
-              _active={{ bg: 'blue.200' }}
-              mt="30px"
-              w="100%"
-              type="button"
-              bg="blue.400"
-              color="white">
-              Get Confirmation Number
-            </Button>
+            _hover={{ textdecorationskipink: 'none' }}>
+            {isValid ? (
+              <Button
+                _hover={{ boxShadow: 'lg' }}
+                _active={{ bg: 'blue.500' }}
+                mt="30px"
+                w="100%"
+                bg="blue.400"
+                color="white"
+                type="link">
+                Get Confirmation Number
+              </Button>
+            ) : (
+              <Button
+                isDisabled
+                mt="30px"
+                w="100%"
+                bg="gray.400"
+                color="black"
+                type="link"
+                _hover={{ bg: 'gray.500' }}>
+                Get Confirmation Number
+              </Button>
+            )}
           </ChakraLink>
         </form>
 

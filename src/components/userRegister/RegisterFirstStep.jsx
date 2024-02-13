@@ -52,6 +52,8 @@ export default function RegisterFirstStep() {
 
   const { errors, isDirty, isValid } = formState;
 
+  // const issue = isDirty && !isValid;
+
   const onSubmit = (data) => {
     console.log('form submitted', data);
   };
@@ -106,8 +108,10 @@ export default function RegisterFirstStep() {
                 })}
               />
             </InputGroup>
-
-            <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
+            {/* <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage> */}
+            {isDirty ? (
+              <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
+            ) : null}
           </FormControl>
 
           <FormControl isInvalid={errors.email} isRequired color="black" mt="20px">
@@ -155,7 +159,14 @@ export default function RegisterFirstStep() {
                 Next Step
               </Button>
             ) : (
-              <Button isDisabled mt="30px" w="100%" bg="gray.200" color="black" type="link">
+              <Button
+                isDisabled
+                mt="30px"
+                w="100%"
+                bg="gray.400"
+                color="black"
+                type="link"
+                _hover={{ bg: 'gray.500' }}>
                 Next Step
               </Button>
             )}
